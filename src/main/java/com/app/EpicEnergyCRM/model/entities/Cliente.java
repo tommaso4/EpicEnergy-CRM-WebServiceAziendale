@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Entity
@@ -34,6 +35,12 @@ public class Cliente {
 
     @Enumerated(EnumType.STRING)
     private TipoCliente tipoCliente;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Fattura> fatture;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Indirizzo> indirizziAzienda;
 
 
 
