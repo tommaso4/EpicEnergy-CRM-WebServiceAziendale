@@ -33,8 +33,9 @@ public class ClienteSvc {
         cliente.setFatturatoAnnuale(clienteReq.getFatturatoAnnuale());
         cliente.setPec(clienteReq.getPec());
         cliente.setTelefono(clienteReq.getTelefono());
+        cliente.setEmailContatto(clienteReq.getEmailContatto());
         cliente.setNomeContatto(clienteReq.getNomeContatto());
-        cliente.setCognomeContatto(cliente.getCognomeContatto());
+        cliente.setCognomeContatto(clienteReq.getCognomeContatto());
         cliente.setTelefonoContatto(clienteReq.getTelefonoContatto());
         cliente.setTipoCliente(clienteReq.getTipoCliente());
 
