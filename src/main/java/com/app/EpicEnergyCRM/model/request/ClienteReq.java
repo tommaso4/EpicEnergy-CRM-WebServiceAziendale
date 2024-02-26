@@ -10,17 +10,17 @@ import java.time.LocalDate;
 @Data
 public class ClienteReq {
 
-    @NotBlank(message = "regioneSociale required")
+    @NotBlank(message = "ragioneSociale required")
     private String ragioneSociale;
     @NotNull(message = "partitaIva required")
     private Integer partitaIva;
     @NotBlank(message = "email required")
     private String email;
-    @NotNull(message = "dataInserimente required")
+    @NotNull(message = "dataInserimento required")
     private LocalDate dataInserimento;
     @NotNull(message = "dataUltimoContatto required")
     private LocalDate dataUltimoContatto;
-    @NotNull(message = "fatturatoAnnulale required")
+    @NotNull(message = "fatturatoAnnuale required")
     private Double fatturatoAnnuale;
     @NotBlank(message = "pec required")
     private String pec;
