@@ -2,6 +2,8 @@ package com.app.EpicEnergyCRM.controller;
 
 import com.app.EpicEnergyCRM.exception.CustomResponse;
 import com.app.EpicEnergyCRM.model.entities.Cliente;
+import com.app.EpicEnergyCRM.model.entities.Fattura;
+import com.app.EpicEnergyCRM.model.entities.Indirizzo;
 import com.app.EpicEnergyCRM.model.request.ClienteReq;
 import com.app.EpicEnergyCRM.service.ClienteSvc;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +64,14 @@ public class ClienteCtrl {
         return CustomResponse.emptyResponse("Cliente with id: " + id + "deleted", HttpStatus.OK);
     }
 
-
+    @PatchMapping("cliente/addFattura/{idFattura}/{idCliente}")
+    public ResponseEntity<CustomResponse> addFattura (@PathVariable int idFattura,@PathVariable int idCliente ){
+        Fattura fattura = clienteSvc.addFatturaInClient(idFattura,idCliente);
+        return CustomResponse.success(HttpStatus.OK.toString(),fattura,HttpStatus.OK);
+    }
+    @PatchMapping("cliente/addIndirizzo/{idIndirizzo}/{idCliente}")
+    public ResponseEntity<CustomResponse> addIndirizzo (@PathVariable int idIndirizzo,@PathVariable int idCliente ){
+        Indirizzo indirizzo = clienteSvc.addIndirizzoInClient(idIndirizzo, idCliente);
+        return CustomResponse.success(HttpStatus.OK.toString(),indirizzo,HttpStatus.OK);
+    }
 }
