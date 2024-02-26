@@ -1,0 +1,40 @@
+package com.app.EpicEnergyCRM.model.entities;
+
+import com.app.EpicEnergyCRM.enums.TipoCliente;
+import jakarta.persistence.*;
+import lombok.Data;
+
+import java.time.LocalDate;
+
+@Data
+@Entity
+public class Cliente {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_seq")
+    @SequenceGenerator(name = "client_seq", sequenceName = "client_sequence", allocationSize = 1)
+    private int id;
+
+    private String ragioneSociale;
+    private int partitaIva;
+    private String email;
+    private LocalDate dataInserimento;
+    private LocalDate dataUltimoContatto;
+    private double fatturatoAnnuale;
+    private String pec;
+    private String telefono;
+
+    @Column(unique = true)
+    private String emailContatto;
+
+    private String nomeContatto;
+    private String cognomeContatto;
+    private String telefonoContatto;
+    private String logoAziendale;
+
+    @Enumerated(EnumType.STRING)
+    private TipoCliente tipoCliente;
+
+
+
+}
