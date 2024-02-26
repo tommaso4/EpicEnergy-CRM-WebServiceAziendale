@@ -1,10 +1,7 @@
 package com.app.EpicEnergyCRM;
-
-<<<<<<< HEAD
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
-=======
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,13 +13,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Properties;
->>>>>>> emanuele
 
 @Configuration
 @PropertySource("application.properties")
 public class AppConfig {
-<<<<<<< HEAD
-=======
 
     @Bean
     public PasswordEncoder encoder(){
@@ -69,5 +63,4 @@ public class AppConfig {
 
     }
 
->>>>>>> emanuele
 }
