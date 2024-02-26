@@ -34,7 +34,7 @@ public class UtenteSvc {
         return utenteRepo.findById(id).orElseThrow(()->new NotFoundException("Utente con id = " + id + " non trovato"));
     }
 
-    public Utente getUtenteByUsername(String username) throws NotFoundException {
+    public Utente getUtenteByUsername(String username) throws NotFoundException{
 
         return utenteRepo.findByUsername(username).orElseThrow(()->new NotFoundException("Username non trovato"));
 
