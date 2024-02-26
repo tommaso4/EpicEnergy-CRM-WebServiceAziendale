@@ -34,7 +34,7 @@ public class UtenteSvc {
         return utenteRepo.findById(id).orElseThrow(()->new NotFoundException("Utente con id = " + id + " non trovato"));
     }
 
-    public Utente getUtenteByUsername(String username){
+    public Utente getUtenteByUsername(String username) throws NotFoundException {
 
         return utenteRepo.findByUsername(username).orElseThrow(()->new NotFoundException("Username non trovato"));
 
@@ -74,7 +74,7 @@ public class UtenteSvc {
         utenteRepo.deleteByUsername(username);
     }
 
-    public Utente updateRoleUtente(String username, String ruolo){
+    public Utente updateRoleUtente(String username, String ruolo) throws NotFoundException {
         Utente u = getUtenteByUsername(username);
         u.setRuolo(Ruolo.valueOf(ruolo));
         return utenteRepo.save(u);
