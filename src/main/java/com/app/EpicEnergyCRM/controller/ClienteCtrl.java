@@ -2,8 +2,10 @@ package com.app.EpicEnergyCRM.controller;
 
 import com.app.EpicEnergyCRM.exception.CustomResponse;
 import com.app.EpicEnergyCRM.model.entities.Cliente;
+import com.app.EpicEnergyCRM.model.entities.Utente;
 import com.app.EpicEnergyCRM.model.request.ClienteReq;
 import com.app.EpicEnergyCRM.service.ClienteSvc;
+import com.cloudinary.Cloudinary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,11 +14,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.HashMap;
 
 @RestController
 public class ClienteCtrl {
     @Autowired
     private ClienteSvc clienteSvc;
+    @Autowired
+    private Cloudinary cloudinary;
 
     @PostMapping("/cliente")
     public ResponseEntity<CustomResponse> createClient(@RequestBody @Validated ClienteReq clienteReq, BindingResult result) {
@@ -63,5 +71,14 @@ public class ClienteCtrl {
         return CustomResponse.emptyResponse("Cliente with id: " + id + "deleted", HttpStatus.OK);
     }
 
-
+    @PatchMapping("/cliente/{id}/upload")
+    public ResponseEntity<CustomResponse> uploadAvatar(@PathVariable int id,@RequestParam("upload") MultipartFile file){
+        try {
+            Cliente c = clienteSvc.uploadLogoAziendale(id, (String)cloudinary.uploader().upload(file.getBytes(), new HashMap()).get("url"));
+            return CustomResponse.success(HttpStatus.OK.toString(), c, HttpStatus.OK);
+        }
+        catch (IOException e){
+            return CustomResponse.error(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
