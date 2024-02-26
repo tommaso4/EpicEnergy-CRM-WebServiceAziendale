@@ -4,6 +4,7 @@ import com.app.EpicEnergyCRM.exception.NotFoundException;
 import com.app.EpicEnergyCRM.model.entities.Cliente;
 import com.app.EpicEnergyCRM.model.entities.Fattura;
 import com.app.EpicEnergyCRM.model.entities.Indirizzo;
+import com.app.EpicEnergyCRM.model.entities.Utente;
 import com.app.EpicEnergyCRM.model.request.ClienteReq;
 import com.app.EpicEnergyCRM.repository.ClienteRepo;
 import com.app.EpicEnergyCRM.repository.FattureRepo;
@@ -86,5 +87,13 @@ public class ClienteSvc {
         Cliente cliente = findClientById(idClient);
         cliente.getIndirizziAzienda().add(indirizzo);
         return indirizzo;
+    }
+
+    public Cliente uploadLogoAziendale(int id, String url) throws NotFoundException {
+        Cliente c = findClientById(id);
+        c.setLogoAziendale(url);
+
+        return clienteRepo.save(c);
+
     }
 }
