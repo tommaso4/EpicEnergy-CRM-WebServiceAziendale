@@ -36,11 +36,12 @@ public class ClienteCtrl {
         return CustomResponse.success(HttpStatus.OK.toString(), clienti, HttpStatus.OK);
     }
 
-    @GetMapping("/cliente")
-    public ResponseEntity<CustomResponse> getAllByRagioneSoc(Pageable pageable) {
-        Page<Cliente> clienti = clienteSvc.getAllByRagioneSociale(pageable);
-        return CustomResponse.success(HttpStatus.OK.toString(), clienti, HttpStatus.OK);
-    }
+
+//    @GetMapping("/cliente")
+//    public ResponseEntity<CustomResponse> getAllByRagioneSoc(Pageable pageable) {
+//        Page<Cliente> clienti = clienteSvc.getAllByRagioneSociale(pageable);
+//        return CustomResponse.success(HttpStatus.OK.toString(), clienti, HttpStatus.OK);
+//    }
 
     @GetMapping("/cliente/{id}")
     public ResponseEntity<CustomResponse> findById(@PathVariable int id) {
