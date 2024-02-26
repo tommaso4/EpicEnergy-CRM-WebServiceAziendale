@@ -42,6 +42,9 @@ public class ClienteSvc {
     }
 
     public Page<Cliente> getAllClient (Pageable pageable){return clienteRepo.findAll(pageable);}
+    public Page<Cliente> getAllByRagioneSociale(Pageable pageable){
+        return clienteRepo.findAllByOrderRegioneSociale(pageable);
+    }
 
     public Cliente findClientById (int id) throws NotFoundException {
         return clienteRepo.findById(id).orElseThrow(() -> new NotFoundException("Client not found!"));
