@@ -89,7 +89,7 @@ public class UtenteSvc {
         javaMailSender.send(message);
     }
 
-    public Utente uploadAvatar(int id, String url){
+    public Utente uploadAvatar(int id, String url) throws NotFoundException {
         Utente u = getUtenteById(id);
         u.setAvatar(url);
 
