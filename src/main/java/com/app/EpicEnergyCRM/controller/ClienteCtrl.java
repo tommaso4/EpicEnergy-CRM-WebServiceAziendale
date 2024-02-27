@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 public class ClienteCtrl {
@@ -43,11 +44,11 @@ public class ClienteCtrl {
     }
 
 
-//    @GetMapping("/cliente")
-//    public ResponseEntity<CustomResponse> getAllByRagioneSoc(Pageable pageable) {
-//        Page<Cliente> clienti = clienteSvc.getAllByRagioneSociale(pageable);
-//        return CustomResponse.success(HttpStatus.OK.toString(), clienti, HttpStatus.OK);
-//    }
+    @GetMapping("/cliente/ragioneSoc")
+    public ResponseEntity<CustomResponse> getAllByRagioneSoc() {
+        List<Cliente> clienti = clienteSvc.getAllByRagioneSociale();
+        return CustomResponse.success(HttpStatus.OK.toString(), clienti, HttpStatus.OK);
+    }
 
     @GetMapping("/cliente/{id}")
     public ResponseEntity<CustomResponse> findById(@PathVariable int id) {

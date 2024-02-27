@@ -11,7 +11,10 @@ import com.app.EpicEnergyCRM.repository.FattureRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ClienteSvc {
@@ -44,9 +47,9 @@ public class ClienteSvc {
     }
 
     public Page<Cliente> getAllClient (Pageable pageable){return clienteRepo.findAll(pageable);}
-//    public Page<Cliente> getAllByRagioneSociale(Pageable pageable){
-//        return clienteRepo.findAllByOrderRagioneSociale(pageable);
-//    }
+    public List<Cliente> getAllByRagioneSociale(){
+        return clienteRepo.findAll(Sort.by("ragioneSociale"));
+    }
 
     public Cliente findClientById (int id) throws NotFoundException {
         return clienteRepo.findById(id).orElseThrow(() -> new NotFoundException("Client not found!"));
@@ -92,8 +95,6 @@ public class ClienteSvc {
     public Cliente uploadLogoAziendale(int id, String url) throws NotFoundException {
         Cliente c = findClientById(id);
         c.setLogoAziendale(url);
-
         return clienteRepo.save(c);
-
     }
 }

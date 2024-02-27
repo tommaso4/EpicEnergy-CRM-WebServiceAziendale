@@ -8,5 +8,4 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface ClienteRepo extends JpaRepository<Cliente,Integer>, PagingAndSortingRepository<Cliente,Integer> {
 
-//    public Page<Cliente> findAllByOrderRagioneSociale(Pageable pageable);
 }
