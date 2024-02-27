@@ -43,7 +43,7 @@ public class ClienteSvc {
 
     public Page<Cliente> getAllClient (Pageable pageable){return clienteRepo.findAll(pageable);}
     public Page<Cliente> getAllByRagioneSociale(Pageable pageable){
-        return clienteRepo.findAllByOrderRegioneSociale(pageable);
+        return clienteRepo.findAllByOrderRagioneSociale(pageable);
     }
 
     public Cliente findClientById (int id) throws NotFoundException {
