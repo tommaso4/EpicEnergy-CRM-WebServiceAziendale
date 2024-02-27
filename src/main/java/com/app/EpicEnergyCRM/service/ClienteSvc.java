@@ -4,6 +4,7 @@ import com.app.EpicEnergyCRM.exception.NotFoundException;
 import com.app.EpicEnergyCRM.model.entities.Cliente;
 import com.app.EpicEnergyCRM.model.entities.Fattura;
 import com.app.EpicEnergyCRM.model.entities.Indirizzo;
+import com.app.EpicEnergyCRM.model.entities.Utente;
 import com.app.EpicEnergyCRM.model.request.ClienteReq;
 import com.app.EpicEnergyCRM.repository.ClienteRepo;
 import com.app.EpicEnergyCRM.repository.FattureRepo;
@@ -33,8 +34,9 @@ public class ClienteSvc {
         cliente.setFatturatoAnnuale(clienteReq.getFatturatoAnnuale());
         cliente.setPec(clienteReq.getPec());
         cliente.setTelefono(clienteReq.getTelefono());
+        cliente.setEmailContatto(clienteReq.getEmailContatto());
         cliente.setNomeContatto(clienteReq.getNomeContatto());
-        cliente.setCognomeContatto(cliente.getCognomeContatto());
+        cliente.setCognomeContatto(clienteReq.getCognomeContatto());
         cliente.setTelefonoContatto(clienteReq.getTelefonoContatto());
         cliente.setTipoCliente(clienteReq.getTipoCliente());
 
@@ -42,9 +44,9 @@ public class ClienteSvc {
     }
 
     public Page<Cliente> getAllClient (Pageable pageable){return clienteRepo.findAll(pageable);}
-    public Page<Cliente> getAllByRagioneSociale(Pageable pageable){
-        return clienteRepo.findAllByOrderRagioneSociale(pageable);
-    }
+//    public Page<Cliente> getAllByRagioneSociale(Pageable pageable){
+//        return clienteRepo.findAllByOrderRagioneSociale(pageable);
+//    }
 
     public Cliente findClientById (int id) throws NotFoundException {
         return clienteRepo.findById(id).orElseThrow(() -> new NotFoundException("Client not found!"));
@@ -85,5 +87,13 @@ public class ClienteSvc {
         Cliente cliente = findClientById(idClient);
         cliente.getIndirizziAzienda().add(indirizzo);
         return indirizzo;
+    }
+
+    public Cliente uploadLogoAziendale(int id, String url) throws NotFoundException {
+        Cliente c = findClientById(id);
+        c.setLogoAziendale(url);
+
+        return clienteRepo.save(c);
+
     }
 }
