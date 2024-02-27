@@ -6,7 +6,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
+
+
 public interface ClienteRepo extends JpaRepository<Cliente,Integer>, PagingAndSortingRepository<Cliente,Integer> {
 
-    public Page<Cliente> findAllByOrderRagioneSociale(Pageable pageable);
+    Page<Cliente> findAllByOrderByRagioneSociale(Pageable pageable);
+    Page<Cliente> findAllByOrderByFatturatoAnnualeDesc(Pageable pageable);
+    Page<Cliente> findAllByOrderByDataInserimentoDesc(Pageable pageable);
+    Page<Cliente> findAllByOrderByDataUltimoContattoDesc(Pageable pageable);
+//    Page<Cliente> findAllByOrderByIndirizziProvinciaSedeLegale(Pageable pageable);
 }

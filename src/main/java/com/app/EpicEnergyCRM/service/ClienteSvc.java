@@ -96,4 +96,24 @@ public class ClienteSvc {
         return clienteRepo.save(c);
 
     }
+
+    public Page<Cliente> getClientiSortedByNome(Pageable pageable) {
+        return clienteRepo.findAllByOrderByRagioneSociale(pageable);
+    }
+
+    public Page<Cliente> getClientiSortedByFatturatoAnnuale(Pageable pageable) {
+        return clienteRepo.findAllByOrderByFatturatoAnnualeDesc(pageable);
+    }
+
+    public Page<Cliente> getClientiSortedByDataInserimento(Pageable pageable) {
+        return clienteRepo.findAllByOrderByDataInserimentoDesc(pageable);
+    }
+
+    public Page<Cliente> getClientiSortedByDataUltimoContatto(Pageable pageable) {
+        return clienteRepo.findAllByOrderByDataUltimoContattoDesc(pageable);
+    }
+
+//    public Page<Cliente> getClientiSortedByProvinciaSedeLegale(Pageable pageable) {
+//        return clienteRepo.findAllByOrderByIndirizziProvinciaSedeLegale(pageable);
+//    }
 }

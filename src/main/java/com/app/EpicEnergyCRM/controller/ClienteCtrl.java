@@ -75,4 +75,28 @@ public class ClienteCtrl {
         Indirizzo indirizzo = clienteSvc.addIndirizzoInClient(idIndirizzo, idCliente);
         return CustomResponse.success(HttpStatus.OK.toString(),indirizzo,HttpStatus.OK);
     }
+    @GetMapping("/cliente/sortedByNome")
+    public Page<Cliente> getClientiSortedByNome(Pageable pageable) {
+        return clienteSvc.getClientiSortedByNome(pageable);
+    }
+
+    @GetMapping("/cliente/sortedByFatturatoAnnuale")
+    public Page<Cliente> getClientiSortedByFatturatoAnnuale(Pageable pageable) {
+        return clienteSvc.getClientiSortedByFatturatoAnnuale(pageable);
+    }
+
+    @GetMapping("/cliente/sortedByDataInserimento")
+    public Page<Cliente> getClientiSortedByDataInserimento(Pageable pageable) {
+        return clienteSvc.getClientiSortedByDataInserimento(pageable);
+    }
+
+    @GetMapping("/cliente/sortedByDataUltimoContatto")
+    public Page<Cliente> getClientiSortedByDataUltimoContatto(Pageable pageable) {
+        return clienteSvc.getClientiSortedByDataUltimoContatto(pageable);
+    }
+
+//    @GetMapping("/cliente/sortedByProvinciaSedeLegale")
+//    public Page<Cliente> getClientiSortedByProvinciaSedeLegale(Pageable pageable) {
+//        return clienteSvc.getClientiSortedByProvinciaSedeLegale(pageable);
+//    }
 }
