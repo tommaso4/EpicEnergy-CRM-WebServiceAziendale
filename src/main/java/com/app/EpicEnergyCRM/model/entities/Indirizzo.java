@@ -3,6 +3,8 @@ package com.app.EpicEnergyCRM.model.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 public class Indirizzo {
@@ -13,13 +15,21 @@ public class Indirizzo {
     private int id;
 
     private String via;
+
     private int civico;
+
     private String localita;
+
     private int cap;
-    private String comune;
+
+    @ManyToOne
+    @JoinColumn(name = "comune_id")
+    private Comune comune;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+
+
 
 }
