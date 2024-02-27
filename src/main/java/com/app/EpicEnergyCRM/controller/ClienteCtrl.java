@@ -95,8 +95,8 @@ public class ClienteCtrl {
         return clienteSvc.getClientiSortedByDataUltimoContatto(pageable);
     }
 
-//    @GetMapping("/cliente/sortedByProvinciaSedeLegale")
-//    public Page<Cliente> getClientiSortedByProvinciaSedeLegale(Pageable pageable) {
-//        return clienteSvc.getClientiSortedByProvinciaSedeLegale(pageable);
-//    }
+    @GetMapping("/cliente/sortedByProvinciaSedeLegale")
+    public Page<Cliente> getClientiSortedByProvinciaSedeLegale(Pageable pageable) {
+        return clienteSvc.getClientiSortedByProvinciaSedeLegale(pageable);
+    }
 }

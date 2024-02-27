@@ -23,7 +23,7 @@ public class FatturaCtrl {
     private FatturaSvc fatturaSvc;
 
     @PostMapping("/fattura")
-    public ResponseEntity<CustomResponse> createClient(@RequestBody @Validated FatturaReq fatturaReq, BindingResult result) {
+    public ResponseEntity<CustomResponse> createFattura(@RequestBody @Validated FatturaReq fatturaReq, BindingResult result) {
         if (result.hasErrors()) {
             String resultErr = result.getAllErrors().stream().map(objectError -> objectError.getDefaultMessage()).toList().toString();
             return CustomResponse.error(resultErr, HttpStatus.BAD_REQUEST);
