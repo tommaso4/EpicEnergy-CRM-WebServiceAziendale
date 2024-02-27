@@ -14,8 +14,8 @@ public class Comune {
     @SequenceGenerator(name = "sequenza_comune", initialValue = 1, allocationSize = 1)
     private int id;
 
-    private int codiceProvincia;
-    private  int progressivoComune;
+    private String codiceProvincia;
+    private  String progressivoComune;
 
     private String denominazione;
 
@@ -25,4 +25,14 @@ public class Comune {
 
     @OneToMany(mappedBy = "comune", fetch = FetchType.EAGER)
     List<Indirizzo> indirizzi;
+
+    public Comune(String codiceProvincia, String progressivoComune, String denominazione, Provincia provincia) {
+        this.codiceProvincia = codiceProvincia;
+        this.progressivoComune = progressivoComune;
+        this.denominazione = denominazione;
+        this.provincia = provincia;
+    }
+
+    public Comune() {
+    }
 }
