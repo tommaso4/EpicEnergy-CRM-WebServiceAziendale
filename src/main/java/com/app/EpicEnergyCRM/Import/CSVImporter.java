@@ -33,13 +33,13 @@ public class CSVImporter {
         } catch (IOException | CsvValidationException e) {
             e.printStackTrace();
         }
-        System.out.println(comuniMap.size());
+//        System.out.println(comuniMap.size());
         return comuniMap;
 
     }
 
     public Map<String, String> importProvince(String csvFile) {
-        Map<String, String> comuniMap = new HashMap<>();
+        Map<String, String> provinceMap = new HashMap<>();
         try (CSVReader reader = new CSVReaderBuilder(new FileReader(csvFile))
                 .withCSVParser(new CSVParserBuilder().withSeparator(';').build())
                 .build()) {
@@ -50,31 +50,32 @@ public class CSVImporter {
                 String provincia = nextLine[1];
                 String regione = nextLine[2];
                 String key = sigla + " " + provincia;
-                comuniMap.put(key, regione);
+                provinceMap.put(key, regione);
             }
         } catch (IOException | CsvValidationException e) {
             e.printStackTrace();
         }
-        System.out.println(comuniMap.size());
-        return comuniMap;
+//        System.out.println(provinceMap.size());
+        return provinceMap;
 
     }
 
-    public static Map<String, String> collegaComuniProvince(Map<String, String> comuniMap, Map<String, String> provinceMap){
-
+    public static Map<String, String> collegaComuniProvince(Map<String, String> comuniMap, Map<String, String> provinceMap) {
         Map<String, String> comuniProvinceMap = new HashMap<>();
 
-        for(Map.Entry<String, String> entry : comuniMap.entrySet()){
-
-            String comune = entry.getKey();
-            String provincia = entry.getValue();
+        comuniMap.forEach((comune, provincia) -> {
             String regione = provinceMap.get(provincia);
-            String provRegione = provincia + " " + regione;
-            comuniProvinceMap.put(comune, provRegione);
+            if (regione != null) {
+                String provRegione = provincia + " " + regione;
+                comuniProvinceMap.put(comune, provRegione);
+            } else {
+                System.out.println("Provincia non trovata per il comune: " + comune);
+            }
+        });
 
-        }
-        System.out.println(comuniProvinceMap);
         return comuniProvinceMap;
     }
-
 }
+
+
+

@@ -21,17 +21,19 @@ public class EpicEnergyCrmApplication {
 
 		Map<String, String> comuniMap = importer.importComuni(comuniCsvFile);
 		Map<String, String> provinceMap = importer.importProvince(provinceCsvFile);
-
-		System.out.println("Comuni Map:");
-		for (Map.Entry<String, String> entry : comuniMap.entrySet()) {
-			System.out.println(entry.getKey() + ": " + entry.getValue());
-		}
-
-		System.out.println("\nProvince Map:");
-		for (Map.Entry<String, String> entry : provinceMap.entrySet()) {
-			System.out.println(entry.getKey() + ": " + entry.getValue());
-		}
-
-
+//
+//		System.out.println("Comuni Map:");
+//		for (Map.Entry<String, String> entry : comuniMap.entrySet()) {
+//			System.out.println(entry.getKey() + ": " + entry.getValue());
+//		}
+//
+//		System.out.println("\nProvince Map:");
+//		for (Map.Entry<String, String> entry : provinceMap.entrySet()) {
+//			System.out.println(entry.getKey() + ": " + entry.getValue());
+//		}
+//
+		Map<String, String> comuniProvinceMap = importer.collegaComuniProvince(comuniMap, provinceMap);
+		System.out.println(comuniProvinceMap);
 	}
 }
+
