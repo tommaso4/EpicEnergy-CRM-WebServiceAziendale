@@ -14,23 +14,23 @@ public class EpicEnergyCrmApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EpicEnergyCrmApplication.class, args);
 
-		String comuniCsvFile = "/Users/emanuelebarone/Desktop/comuni__province/comuni-italiani.csv";
-		String provinceCsvFile = "/Users/emanuelebarone/Desktop/comuni__province/province-italiane.csv";
-
-		CSVImporter importer = new CSVImporter();
-
-		Map<String, String> comuniMap = importer.importComuni(comuniCsvFile);
-		Map<String, String> provinceMap = importer.importProvince(provinceCsvFile);
-
-		System.out.println("Comuni Map:");
-		for (Map.Entry<String, String> entry : comuniMap.entrySet()) {
-			System.out.println(entry.getKey() + ": " + entry.getValue());
-		}
-
-		System.out.println("\nProvince Map:");
-		for (Map.Entry<String, String> entry : provinceMap.entrySet()) {
-			System.out.println(entry.getKey() + ": " + entry.getValue());
-		}
+//		String comuniCsvFile = "/Users/emanuelebarone/Desktop/comuni__province/comuni-italiani.csv";
+//		String provinceCsvFile = "/Users/emanuelebarone/Desktop/comuni__province/province-italiane.csv";
+//
+//		CSVImporter importer = new CSVImporter();
+//
+//		Map<String, String> comuniMap = importer.importComuni(comuniCsvFile);
+//		Map<String, String> provinceMap = importer.importProvince(provinceCsvFile);
+//
+//		System.out.println("Comuni Map:");
+//		for (Map.Entry<String, String> entry : comuniMap.entrySet()) {
+//			System.out.println(entry.getKey() + ": " + entry.getValue());
+//		}
+//
+//		System.out.println("\nProvince Map:");
+//		for (Map.Entry<String, String> entry : provinceMap.entrySet()) {
+//			System.out.println(entry.getKey() + ": " + entry.getValue());
+//		}
 
 
 	}
