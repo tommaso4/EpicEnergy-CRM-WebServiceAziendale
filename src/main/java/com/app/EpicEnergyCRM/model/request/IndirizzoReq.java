@@ -1,6 +1,7 @@
 package com.app.EpicEnergyCRM.model.request;
 
 import com.app.EpicEnergyCRM.model.entities.Cliente;
+import com.app.EpicEnergyCRM.model.entities.Comune;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
@@ -19,7 +20,7 @@ public class IndirizzoReq {
     @NotNull(message = "cap required")
     private Integer cap;
     @NotBlank(message = "comune required")
-    private String comune;
+    private Comune comune;
     @NotNull(message = "cliente required")
     private Integer clienteId;
 }
