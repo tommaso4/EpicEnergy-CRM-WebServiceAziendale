@@ -14,4 +14,5 @@ public class IndirizziSvc {
     public Indirizzo findById(int id) throws NotFoundException {
         return indirizzoRepo.findById(id).orElseThrow(() -> new NotFoundException("Adress not found!"));
     }
+
 }
