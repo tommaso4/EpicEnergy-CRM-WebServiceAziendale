@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
 public class ClienteSvc {
     @Autowired
     private ClienteRepo clienteRepo;
-    @Autowired
-    private FatturaSvc fatturaSvc;
+//    @Autowired
+//    private FatturaSvc fatturaSvc;
 
     @Autowired
     private IndirizziSvc indirizzoSvc;
@@ -75,12 +75,12 @@ public class ClienteSvc {
         clienteRepo.delete(cliente);
     }
 
-    public Fattura addFatturaInClient (int idFattura, int idClient) throws NotFoundException {
-        Fattura fattura = fatturaSvc.findFatturaById(idFattura);
-        Cliente cliente = findClientById(idClient);
-        cliente.getFatture().add(fattura);
-        return fattura;
-    }
+//    public Fattura addFatturaInClient (int idFattura, int idClient) throws NotFoundException {
+//        Fattura fattura = fatturaSvc.findFatturaById(idFattura);
+//        Cliente cliente = findClientById(idClient);
+//        cliente.getFatture().add(fattura);
+//        return fattura;
+//    }
 
     public Indirizzo addIndirizzoInClient(int idIdirizzo, int idClient) throws NotFoundException {
         Indirizzo indirizzo = indirizzoSvc.findById(idIdirizzo);
