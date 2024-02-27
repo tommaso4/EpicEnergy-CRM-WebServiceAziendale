@@ -2,12 +2,8 @@ package com.app.EpicEnergyCRM.service;
 
 import com.app.EpicEnergyCRM.exception.NotFoundException;
 import com.app.EpicEnergyCRM.model.entities.Cliente;
-import com.app.EpicEnergyCRM.model.entities.Fattura;
-import com.app.EpicEnergyCRM.model.entities.Indirizzo;
-import com.app.EpicEnergyCRM.model.entities.Utente;
 import com.app.EpicEnergyCRM.model.request.ClienteReq;
 import com.app.EpicEnergyCRM.repository.ClienteRepo;
-import com.app.EpicEnergyCRM.repository.FattureRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,8 +16,8 @@ public class ClienteSvc {
 //    @Autowired
 //    private FatturaSvc fatturaSvc;
 
-    @Autowired
-    private IndirizziSvc indirizzoSvc;
+//    @Autowired
+//    private IndirizzoSvc indirizzoSvc;
 
     public Cliente createClient (ClienteReq clienteReq){
         Cliente cliente = new Cliente();
@@ -82,12 +78,12 @@ public class ClienteSvc {
 //        return fattura;
 //    }
 
-    public Indirizzo addIndirizzoInClient(int idIdirizzo, int idClient) throws NotFoundException {
-        Indirizzo indirizzo = indirizzoSvc.findById(idIdirizzo);
-        Cliente cliente = findClientById(idClient);
-        cliente.getIndirizziAzienda().add(indirizzo);
-        return indirizzo;
-    }
+//    public Indirizzo addIndirizzoInClient(int idIdirizzo, int idClient) throws NotFoundException {
+//        Indirizzo indirizzo = indirizzoSvc.findIndirizzoById(idIdirizzo);
+//        Cliente cliente = findClientById(idClient);
+//        cliente.getIndirizziAzienda().add(indirizzo);
+//        return indirizzo;
+//    }
 
     public Cliente uploadLogoAziendale(int id, String url) throws NotFoundException {
         Cliente c = findClientById(id);
