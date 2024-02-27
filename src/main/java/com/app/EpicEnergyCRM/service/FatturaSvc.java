@@ -1,15 +1,18 @@
 package com.app.EpicEnergyCRM.service;
 
+import com.app.EpicEnergyCRM.enums.TipoFattura;
 import com.app.EpicEnergyCRM.exception.NotFoundException;
 import com.app.EpicEnergyCRM.model.entities.Cliente;
 import com.app.EpicEnergyCRM.model.entities.Fattura;
-import com.app.EpicEnergyCRM.model.request.ClienteReq;
 import com.app.EpicEnergyCRM.model.request.FatturaReq;
 import com.app.EpicEnergyCRM.repository.FattureRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.time.LocalDate;
 
 @Service
 public class FatturaSvc {
@@ -42,7 +45,7 @@ public class FatturaSvc {
         Cliente cliente = clienteSvc.findClientById(fatturaReq.getClienteId());
 
         fattura.setData(fatturaReq.getData());
-        fattura.setImporto(fattura.getImporto());
+        fattura.setImporto(fatturaReq.getImporto());
         fattura.setTipoFattura(fatturaReq.getTipoFattura());
         fattura.setCliente(cliente);
 
@@ -52,5 +55,26 @@ public class FatturaSvc {
     public void deleteFattura (int id) throws NotFoundException {
         Fattura fattura = findFatturaById(id);
         fattureRepo.delete(fattura);
+    }
+
+
+    public List<Fattura> getFattureByCliente(Cliente cliente) {
+        return fattureRepo.findByCliente(cliente);
+    }
+
+    public List<Fattura> getFattureByTipoFattura(TipoFattura tipoFattura) {
+        return fattureRepo.findByTipoFattura(tipoFattura);
+    }
+
+    public List<Fattura> getFattureByData(LocalDate data) {
+        return fattureRepo.findByData(data);
+    }
+
+//    public List<Fattura> getFattureByAnno(int anno) {
+//        return fattureRepo.findByDataYear(anno);
+//    }
+
+    public List<Fattura> getFattureByImportoRange(double minImporto, double maxImporto) {
+        return fattureRepo.findByImportoBetween(minImporto, maxImporto);
     }
 }
