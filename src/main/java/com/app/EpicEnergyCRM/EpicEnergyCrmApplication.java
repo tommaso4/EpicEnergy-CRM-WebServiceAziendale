@@ -1,6 +1,5 @@
 package com.app.EpicEnergyCRM;
 
-import com.app.EpicEnergyCRM.Import.CSVImporter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,10 +16,10 @@ public class EpicEnergyCrmApplication {
 		String comuniCsvFile = "/Users/emanuelebarone/Desktop/comuni__province/comuni-italiani.csv";
 		String provinceCsvFile = "/Users/emanuelebarone/Desktop/comuni__province/province-italiane.csv";
 
-		CSVImporter importer = new CSVImporter();
-
-		Map<String, String> comuniMap = importer.importComuni(comuniCsvFile);
-		Map<String, String> provinceMap = importer.importProvince(provinceCsvFile);
+//		CSVImporter importer = new CSVImporter();
+//
+//		Map<String, String> comuniMap = importer.importComuni(comuniCsvFile);
+//		Map<String, String> provinceMap = importer.importProvince(provinceCsvFile);
 //
 //		System.out.println("Comuni Map:");
 //		for (Map.Entry<String, String> entry : comuniMap.entrySet()) {
@@ -32,8 +31,8 @@ public class EpicEnergyCrmApplication {
 //			System.out.println(entry.getKey() + ": " + entry.getValue());
 //		}
 //
-		Map<String, String> comuniProvinceMap = importer.collegaComuniProvince(comuniMap, provinceMap);
-		System.out.println(comuniProvinceMap);
+//		Map<String, String> comuniProvinceMap = importer.collegaComuniProvince(comuniMap, provinceMap);
+//		System.out.println(comuniProvinceMap);
 	}
 }
 
