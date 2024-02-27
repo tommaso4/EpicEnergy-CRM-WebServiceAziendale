@@ -3,6 +3,8 @@ package com.app.EpicEnergyCRM.model.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 public class Indirizzo {
@@ -21,5 +23,7 @@ public class Indirizzo {
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+
+
 
 }
