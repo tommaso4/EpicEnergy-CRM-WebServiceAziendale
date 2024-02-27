@@ -25,7 +25,7 @@ public class IndirizzoSvc {
         indirizzo.setCivico(indirizzoReq.getCivico());
         indirizzo.setLocalita(indirizzoReq.getLocalita());
         indirizzo.setCap(indirizzoReq.getCap());
-        indirizzo.setComune(indirizzoReq.getComune());
+//        indirizzo.setComune(indirizzoReq.getComune());
         indirizzo.setCliente(cliente);
 
         return indirizzoRepo.save(indirizzo);
@@ -44,7 +44,7 @@ public class IndirizzoSvc {
         indirizzo.setCivico(indirizzoReq.getCivico());
         indirizzo.setLocalita(indirizzoReq.getLocalita());
         indirizzo.setCap(indirizzoReq.getCap());
-        indirizzo.setComune(indirizzoReq.getComune());
+//      indirizzo.setComune(indirizzoReq.getComune());
         indirizzo.setCliente(cliente);
 
         return indirizzoRepo.save(indirizzo);
@@ -54,5 +54,4 @@ public class IndirizzoSvc {
         Indirizzo indirizzo = findIndirizzoById(id);
         indirizzoRepo.delete(indirizzo);
     }
-
 }
