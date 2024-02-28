@@ -28,7 +28,12 @@ public interface ClienteRepo extends JpaRepository<Cliente,Integer>, PagingAndSo
 
     List<Cliente> findByRagioneSocialeContainingIgnoreCase(String parteDelNome);
 
-    @Query(value = "select c from Cliente c JOIN c.indirizzo i JOIN i.comune com order by com.provincia ASC", nativeQuery = true)
-    List<Cliente> orderByProvincia ();
+    @Query("SELECT c FROM Cliente c " +
+            "JOIN Indirizzo i ON c.id = i.cliente.id " +
+            "JOIN Comune com ON i.comune.id = com.id " +
+            "JOIN Provincia p ON com.provincia.id = p.id " +
+            "WHERE i.tipoIndirizzo = 'SEDE_LEGALE' " +
+            "ORDER BY p.provincia")
+    Page<Cliente> findAllByOrderByProvinciaSedeLegale(Pageable pageable);
 
 }

@@ -95,10 +95,10 @@ public class ClienteCtrl {
         return clienteSvc.getClientiSortedByDataUltimoContatto(pageable);
     }
 
-//    @GetMapping("/cliente/sortedByProvinciaSedeLegale")
-//    public Page<Cliente> getClientiSortedByProvinciaSedeLegale(Pageable pageable) {
-//        return clienteSvc.getClientiSortedByProvinciaSedeLegale(pageable);
-//    }
+    @GetMapping("/cliente/sortedByProvinciaSedeLegale")
+    public Page<Cliente> findAllByOrderByProvinciaSedeLegale(Pageable pageable) {
+        return clienteSvc.findAllByOrderByProvinciaSedeLegale(pageable);
+    }
 
     @GetMapping("/cliente/filterByFatturatoAnnuale")
     public ResponseEntity<CustomResponse> findByFatturatoAnnualeGreaterThanEqual(@RequestParam double fatturatoMinimo){
