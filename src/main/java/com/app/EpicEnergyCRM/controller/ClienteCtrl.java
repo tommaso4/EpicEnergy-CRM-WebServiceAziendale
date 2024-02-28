@@ -47,6 +47,12 @@ public class ClienteCtrl {
         return CustomResponse.success(HttpStatus.OK.toString(), clienti, HttpStatus.OK);
     }
 
+    @GetMapping("/cliente/provincia")
+    public ResponseEntity<CustomResponse> sortByProvincia(){
+        List<Cliente> clienti = clienteSvc.sortByProvincia();
+        return CustomResponse.success(HttpStatus.OK.toString(),clienti,HttpStatus.OK);
+    }
+
     @GetMapping("/cliente/{id}")
     public ResponseEntity<CustomResponse> findById(@PathVariable int id) {
         Cliente cliente = clienteSvc.findClientById(id);

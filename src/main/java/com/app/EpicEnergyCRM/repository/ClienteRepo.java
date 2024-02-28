@@ -4,6 +4,7 @@ import com.app.EpicEnergyCRM.model.entities.Cliente;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.time.LocalDate;
@@ -26,5 +27,8 @@ public interface ClienteRepo extends JpaRepository<Cliente,Integer>, PagingAndSo
     List<Cliente> findByDataUltimoContattoBetween(LocalDate startDate, LocalDate endDate);
 
     List<Cliente> findByRagioneSocialeContainingIgnoreCase(String parteDelNome);
+
+    @Query(value = "select c from Cliente c JOIN c.indirizzo i JOIN i.comune com order by com.provincia ASC", nativeQuery = true)
+    List<Cliente> orderByProvincia ();
 
 }
