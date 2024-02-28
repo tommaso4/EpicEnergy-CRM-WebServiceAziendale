@@ -2,9 +2,8 @@ package com.app.EpicEnergyCRM.controller;
 
 import com.app.EpicEnergyCRM.exception.CustomResponse;
 import com.app.EpicEnergyCRM.model.entities.Cliente;
-import com.app.EpicEnergyCRM.model.entities.Fattura;
-import com.app.EpicEnergyCRM.model.entities.Indirizzo;
 import com.app.EpicEnergyCRM.model.request.ClienteReq;
+import com.app.EpicEnergyCRM.service.ClienteSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
