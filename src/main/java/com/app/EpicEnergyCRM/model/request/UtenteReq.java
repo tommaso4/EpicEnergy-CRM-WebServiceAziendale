@@ -1,6 +1,7 @@
 package com.app.EpicEnergyCRM.model.request;
 
 import jakarta.validation.constraints.Email;
+
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
@@ -17,5 +18,7 @@ public class UtenteReq {
     private String password;
     @Email(message = "Inserisci una mail valida")
     private String email;
+    @NotBlank(message = "Campo obbligatorio")
+    private String avatar;
 
 }
