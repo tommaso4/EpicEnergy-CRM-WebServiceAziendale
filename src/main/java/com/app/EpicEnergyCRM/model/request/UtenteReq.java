@@ -18,7 +18,5 @@ public class UtenteReq {
     private String password;
     @Email(message = "Inserisci una mail valida")
     private String email;
-    @NotBlank(message = "Campo obbligatorio")
-    private String avatar;
 
 }

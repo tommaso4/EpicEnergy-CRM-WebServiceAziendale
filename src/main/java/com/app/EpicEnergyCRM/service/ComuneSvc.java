@@ -17,4 +17,8 @@ public class ComuneSvc {
         comuneRepo.save(comune);
     }
 
+//    public Comune getComuneByName(String comune){
+//
+//    }
+
 }

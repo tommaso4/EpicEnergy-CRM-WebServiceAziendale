@@ -37,6 +37,8 @@ public class ClienteReq {
     private String telefonoContatto;
     @NotNull(message = "tipo cliente required")
     private TipoCliente tipoCliente;
-//    @NotNull(message = "sede legale required")
-//    private Indirizzo sedeLegale;
+   @NotNull(message = "sede legale required")
+   private Indirizzo sedeLegale;
+    @NotNull(message = "sede operativa required")
+    private Indirizzo sedeOperativa;
 }

@@ -37,11 +37,15 @@ public class Cliente {
     @Enumerated(EnumType.STRING)
     private TipoCliente tipoCliente;
 
-//    private Indirizzo sedeLegale;
+    @OneToOne(mappedBy = "cliente",fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private Indirizzo sedeLegale;
+
+    @OneToOne(mappedBy = "cliente",fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private Indirizzo sedeOperativa;
 
     @OneToMany(mappedBy = "cliente",fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Fattura> fatture;
 
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    private List<Indirizzo> indirizziAzienda;
+//    @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+//    private List<Indirizzo> indirizziAzienda;
 }

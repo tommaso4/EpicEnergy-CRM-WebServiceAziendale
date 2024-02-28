@@ -10,7 +10,7 @@ public class ProvSvc {
     @Autowired
     private ProvRepo provRepo;
 
-    public void createProv (String sig,String prov, String reg){
+    public void createProv (String sig, String prov, String reg){
         Provincia provincia = new Provincia(sig,prov,reg);
         provRepo.save(provincia);
     }

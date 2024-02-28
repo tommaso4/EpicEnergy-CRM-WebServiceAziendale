@@ -26,7 +26,7 @@ public class Indirizzo {
     @JoinColumn(name = "comune_id")
     private Comune comune;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 

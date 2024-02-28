@@ -15,12 +15,13 @@ public class Comune {
     private int id;
 
     private String codiceProvincia;
+
     private  String progressivoComune;
 
     private String denominazione;
 
     @ManyToOne
-    @JoinColumn(name="comune_id")
+    @JoinColumn(name="provincia_id")
     private  Provincia provincia;
 
     @OneToMany(mappedBy = "comune", fetch = FetchType.EAGER)
