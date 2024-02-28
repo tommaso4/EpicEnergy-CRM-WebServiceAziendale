@@ -42,9 +42,7 @@ public class ClienteSvc {
     public Page<Cliente> getAllByRagioneSociale(Pageable pageable){
         return clienteRepo.findAllByOrderByRagioneSociale(pageable);
     }
-    public List<Cliente> sortByProvincia (){
-        return clienteRepo.orderByProvincia();
-    }
+
 
     public Cliente findClientById (int id) throws NotFoundException {
         return clienteRepo.findById(id).orElseThrow(() -> new NotFoundException("Client not found!"));

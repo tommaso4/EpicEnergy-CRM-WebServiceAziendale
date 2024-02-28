@@ -24,7 +24,7 @@ public class ClienteCtrl {
     @Autowired
     private ClienteSvc clienteSvc;
 
-    @PostMapping("/cliente")
+    @PostMapping("/cliente/create")
     public ResponseEntity<CustomResponse> createClient(@RequestBody @Validated ClienteReq clienteReq, BindingResult result) {
         if (result.hasErrors()) {
             String resultErr = result.getAllErrors().stream().map(objectError -> objectError.getDefaultMessage()).toList().toString();
@@ -45,12 +45,6 @@ public class ClienteCtrl {
     public ResponseEntity<CustomResponse> getAllByRagioneSoc(Pageable pageable) {
         Page<Cliente> clienti = clienteSvc.getAllByRagioneSociale(pageable);
         return CustomResponse.success(HttpStatus.OK.toString(), clienti, HttpStatus.OK);
-    }
-
-    @GetMapping("/cliente/provincia")
-    public ResponseEntity<CustomResponse> sortByProvincia(){
-        List<Cliente> clienti = clienteSvc.sortByProvincia();
-        return CustomResponse.success(HttpStatus.OK.toString(),clienti,HttpStatus.OK);
     }
 
     @GetMapping("/cliente/{id}")
