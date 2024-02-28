@@ -84,11 +84,11 @@ public class FatturaCtrl {
         return CustomResponse.success(HttpStatus.OK.toString(), fatture, HttpStatus.OK);
     }
 
-//    @GetMapping("/fattura/byAnno")
-//    public ResponseEntity<CustomResponse> getFattureByAnno(@RequestParam int anno) {
-//        List<Fattura> fatture = fatturaSvc.getFattureByAnno(anno);
-//        return CustomResponse.success(HttpStatus.OK.toString(), fatture, HttpStatus.OK);
-//    }
+    @GetMapping("/fattura/byYear")
+    public ResponseEntity<CustomResponse> findByYear(@RequestParam int anno) {
+        List<Fattura> fatture = fatturaSvc.findByYear(anno);
+        return CustomResponse.success(HttpStatus.OK.toString(), fatture, HttpStatus.OK);
+    }
 
     @GetMapping("/fattura/byImportoRange")
     public ResponseEntity<CustomResponse> getFattureByImportoRange(

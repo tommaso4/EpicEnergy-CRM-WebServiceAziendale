@@ -2,14 +2,16 @@ package com.app.EpicEnergyCRM.service;
 
 import com.app.EpicEnergyCRM.exception.NotFoundException;
 import com.app.EpicEnergyCRM.model.entities.Cliente;
+import com.app.EpicEnergyCRM.model.entities.Fattura;
+import com.app.EpicEnergyCRM.model.entities.Indirizzo;
 import com.app.EpicEnergyCRM.model.request.ClienteReq;
 import com.app.EpicEnergyCRM.repository.ClienteRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -37,8 +39,8 @@ public class ClienteSvc {
     }
 
     public Page<Cliente> getAllClient (Pageable pageable){return clienteRepo.findAll(pageable);}
-    public List<Cliente> getAllByRagioneSociale(){
-        return clienteRepo.findAll(Sort.by("ragioneSociale"));
+    public Page<Cliente> getAllByRagioneSociale(Pageable pageable){
+        return clienteRepo.findAllByOrderByRagioneSociale(pageable);
     }
 
     public Cliente findClientById (int id) throws NotFoundException {
@@ -68,10 +70,10 @@ public class ClienteSvc {
         clienteRepo.delete(cliente);
     }
 
-
     public Cliente uploadLogoAziendale(int id, String url) throws NotFoundException {
         Cliente c = findClientById(id);
         c.setLogoAziendale(url);
+
         return clienteRepo.save(c);
     }
 
@@ -94,4 +96,20 @@ public class ClienteSvc {
 //    public Page<Cliente> getClientiSortedByProvinciaSedeLegale(Pageable pageable) {
 //        return clienteRepo.findAllByOrderByIndirizziProvinciaSedeLegale(pageable);
 //    }
+
+    public List<Cliente> findByFatturatoAnnualeGreaterThanEqual(double fatturatoMinimo){
+        return clienteRepo.findByFatturatoAnnualeGreaterThanEqual(fatturatoMinimo);
+    }
+
+    public List<Cliente> findByDataInserimentoBetween(LocalDate startDate, LocalDate endDate){
+        return clienteRepo.findByDataInserimentoBetween(startDate, endDate);
+    }
+
+    public List<Cliente> findByDataUltimoContattoBetween(LocalDate startDate, LocalDate endDate){
+        return clienteRepo.findByDataUltimoContattoBetween(startDate, endDate);
+    }
+
+    public List<Cliente> findByNomeContainingIgnoreCase(String parteDelNome){
+        return clienteRepo.findByRagioneSocialeContainingIgnoreCase(parteDelNome);
+    }
 }

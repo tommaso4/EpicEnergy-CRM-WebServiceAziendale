@@ -6,6 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
+import java.time.LocalDate;
+import java.util.List;
 
 
 public interface ClienteRepo extends JpaRepository<Cliente,Integer>, PagingAndSortingRepository<Cliente,Integer> {
@@ -14,5 +16,15 @@ public interface ClienteRepo extends JpaRepository<Cliente,Integer>, PagingAndSo
     Page<Cliente> findAllByOrderByFatturatoAnnualeDesc(Pageable pageable);
     Page<Cliente> findAllByOrderByDataInserimentoDesc(Pageable pageable);
     Page<Cliente> findAllByOrderByDataUltimoContattoDesc(Pageable pageable);
+
 //    Page<Cliente> findAllByOrderByIndirizziProvinciaSedeLegale(Pageable pageable);
+
+    List<Cliente> findByFatturatoAnnualeGreaterThanEqual(double fatturatoMinimo);
+
+    List<Cliente> findByDataInserimentoBetween(LocalDate startDate, LocalDate endDate);
+
+    List<Cliente> findByDataUltimoContattoBetween(LocalDate startDate, LocalDate endDate);
+
+    List<Cliente> findByRagioneSocialeContainingIgnoreCase(String parteDelNome);
+
 }

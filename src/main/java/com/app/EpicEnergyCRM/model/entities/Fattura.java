@@ -24,7 +24,7 @@ public class Fattura {
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cliente_id")
+//    @JsonProperty("cliente_id")
+    @JsonIgnore
     private Cliente cliente;
-
-
 }
