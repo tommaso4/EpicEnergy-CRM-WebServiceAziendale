@@ -48,7 +48,6 @@ public class FatturaSvc {
         fattura.setImporto(fatturaReq.getImporto());
         fattura.setTipoFattura(fatturaReq.getTipoFattura());
         fattura.setCliente(cliente);
-
         return fattureRepo.save(fattura);
     }
 

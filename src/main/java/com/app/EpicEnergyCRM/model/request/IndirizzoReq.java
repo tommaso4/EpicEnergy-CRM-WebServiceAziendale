@@ -19,7 +19,7 @@ public class IndirizzoReq {
     private String localita;
     @NotNull(message = "cap required")
     private Integer cap;
-    @NotNull(message = "comune required")
+    @NotBlank(message = "comune required")
     private Comune comune;
     @NotNull(message = "cliente required")
     private Integer clienteId;
