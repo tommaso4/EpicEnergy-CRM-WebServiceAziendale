@@ -93,6 +93,10 @@ public class ClienteSvc {
         return clienteRepo.findAllByOrderByDataUltimoContattoDesc(pageable);
     }
 
+    public Page<Cliente> findAllByOrderByProvinciaSedeLegale(Pageable pageable){
+        return clienteRepo.findAllByOrderByProvinciaSedeLegale(pageable);
+    }
+
 //    public Page<Cliente> getClientiSortedByProvinciaSedeLegale(Pageable pageable) {
 //        return clienteRepo.findAllByOrderByIndirizziProvinciaSedeLegale(pageable);
 //    }
