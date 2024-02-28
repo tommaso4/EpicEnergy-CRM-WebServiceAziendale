@@ -1,5 +1,6 @@
 package com.app.EpicEnergyCRM.service;
 
+import com.app.EpicEnergyCRM.exception.NotFoundException;
 import com.app.EpicEnergyCRM.model.entities.Comune;
 import com.app.EpicEnergyCRM.repository.ComuneRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,7 @@ public class ComuneSvc {
         comuneRepo.save(comune);
     }
 
-//    public Comune getComuneByName(String comune){
-//
-//    }
+   }
 
-}
+
+
