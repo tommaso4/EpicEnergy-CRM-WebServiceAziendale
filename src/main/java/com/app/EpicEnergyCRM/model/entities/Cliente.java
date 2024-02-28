@@ -37,11 +37,11 @@ public class Cliente {
     @Enumerated(EnumType.STRING)
     private TipoCliente tipoCliente;
 
-    @JsonIgnore
+//    private Indirizzo sedeLegale;
+
     @OneToMany(mappedBy = "cliente",fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Fattura> fatture;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Indirizzo> indirizziAzienda;
 }

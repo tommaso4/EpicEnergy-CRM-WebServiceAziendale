@@ -22,6 +22,4 @@ public class Fattura {
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
-
-
 }

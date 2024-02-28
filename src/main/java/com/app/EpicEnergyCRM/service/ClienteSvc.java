@@ -2,6 +2,8 @@ package com.app.EpicEnergyCRM.service;
 
 import com.app.EpicEnergyCRM.exception.NotFoundException;
 import com.app.EpicEnergyCRM.model.entities.Cliente;
+import com.app.EpicEnergyCRM.model.entities.Fattura;
+import com.app.EpicEnergyCRM.model.entities.Indirizzo;
 import com.app.EpicEnergyCRM.model.request.ClienteReq;
 import com.app.EpicEnergyCRM.repository.ClienteRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +15,6 @@ import org.springframework.stereotype.Service;
 public class ClienteSvc {
     @Autowired
     private ClienteRepo clienteRepo;
-//    @Autowired
-//    private FatturaSvc fatturaSvc;
-
-//    @Autowired
-//    private IndirizzoSvc indirizzoSvc;
-
     public Cliente createClient (ClienteReq clienteReq){
         Cliente cliente = new Cliente();
 
@@ -40,9 +36,9 @@ public class ClienteSvc {
     }
 
     public Page<Cliente> getAllClient (Pageable pageable){return clienteRepo.findAll(pageable);}
-//    public Page<Cliente> getAllByRagioneSociale(Pageable pageable){
-//        return clienteRepo.findAllByOrderRagioneSociale(pageable);
-//    }
+    public Page<Cliente> getAllByRagioneSociale(Pageable pageable){
+        return clienteRepo.findAllByOrderByRagioneSociale(pageable);
+    }
 
     public Cliente findClientById (int id) throws NotFoundException {
         return clienteRepo.findById(id).orElseThrow(() -> new NotFoundException("Client not found!"));
@@ -71,26 +67,11 @@ public class ClienteSvc {
         clienteRepo.delete(cliente);
     }
 
-//    public Fattura addFatturaInClient (int idFattura, int idClient) throws NotFoundException {
-//        Fattura fattura = fatturaSvc.findFatturaById(idFattura);
-//        Cliente cliente = findClientById(idClient);
-//        cliente.getFatture().add(fattura);
-//        return fattura;
-//    }
-
-//    public Indirizzo addIndirizzoInClient(int idIdirizzo, int idClient) throws NotFoundException {
-//        Indirizzo indirizzo = indirizzoSvc.findIndirizzoById(idIdirizzo);
-//        Cliente cliente = findClientById(idClient);
-//        cliente.getIndirizziAzienda().add(indirizzo);
-//        return indirizzo;
-//    }
-
     public Cliente uploadLogoAziendale(int id, String url) throws NotFoundException {
         Cliente c = findClientById(id);
         c.setLogoAziendale(url);
 
         return clienteRepo.save(c);
-
     }
 
     public Page<Cliente> getClientiSortedByNome(Pageable pageable) {
