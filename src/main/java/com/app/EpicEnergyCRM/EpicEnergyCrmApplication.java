@@ -12,76 +12,23 @@ import java.io.IOException;
 import java.util.Scanner;
 
 @SpringBootApplication
-public class EpicEnergyCrmApplication implements CommandLineRunner {
-
-    @Autowired
-    private ComuneSvc comSvc;
-
-    @Autowired
-    private ProvSvc provSvc;
-
+public class EpicEnergyCrmApplication{
     public static void main(String[] args) throws IOException {
-        SpringApplication.run(EpicEnergyCrmApplication.class, args);
+        SpringApplication.run(EpicEnergyCrmApplication.class, args);   }
+    
+
+}
 
 
-    }
+
+
+
+
+//    @Autowired
+//    private ComuneSvc comSvc;
 //    @Override
-//    public void run(String... args) throws  Exception{
-//      // popolaProvincia();
-//        //popolaComuni();
-//    }
-
-    @Override
-    public void run(String... args) throws Exception {
-
-        String pathFileName = "Provincie-Comuni/comuni.txt";
-        File inputFile = new File(pathFileName);
-        Scanner scannerDaFile = null;
-        try {
-            scannerDaFile = new Scanner(inputFile);
-            while (scannerDaFile.hasNextLine()) {
-                String line = scannerDaFile.nextLine();
-                String[] parts = line.split(";");
-                if (parts.length == 4) {
-                    comSvc.createComune(parts[0], parts[1], parts[2], parts[3]);
-                }
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            if (scannerDaFile != null) {
-                scannerDaFile.close();
-            }
-        }
-    }
-
-    //
-//    public  void popolaProvincia(){
-//
-//        String pathFileName = "Provincie-Comuni/provincie.txt";
-//        File inputFile = new File(pathFileName);
-//        Scanner scannerDaFile = null;
-//        try {
-//            scannerDaFile = new Scanner(inputFile);
-//            while (scannerDaFile.hasNextLine()) {
-//                String line = scannerDaFile.nextLine();
-//                String[] parts = line.split(";");
-//                if (parts.length == 3) {
-//                    provSvc.createProv(parts[0],parts[1],parts[2]);
-//                }
-//            }
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (scannerDaFile != null) {
-//                scannerDaFile.close();
-//            }
-//        }
-//    }
-//
-//    public void popolaComuni() {
-////
-//        String pathFileName = "Provincie-Comuni/comuni.txt";
+//    public void run(String... args) throws Exception {
+//        String pathFileName = "com.txt";
 //        File inputFile = new File(pathFileName);
 //        Scanner scannerDaFile = null;
 //        try {
@@ -90,7 +37,7 @@ public class EpicEnergyCrmApplication implements CommandLineRunner {
 //                String line = scannerDaFile.nextLine();
 //                String[] parts = line.split(";");
 //                if (parts.length == 4) {
-//                    comSvc.createComune(parts[0], parts[1], parts[2], parts[3]);
+//                    comSvc.createComune(parts[0],parts[1],parts[2],parts[3]);
 //                }
 //            }
 //        } catch (FileNotFoundException e) {
@@ -101,11 +48,5 @@ public class EpicEnergyCrmApplication implements CommandLineRunner {
 //            }
 //        }
 //    }
-}
-
-
-
-
-
 
 

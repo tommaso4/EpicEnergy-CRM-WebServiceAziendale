@@ -21,7 +21,7 @@ public class IndirizzoCtrl {
     @Autowired
     private IndirizzoSvc indirizzoSvc;
 
-    @PostMapping("/indirizzo")
+    @PostMapping("/indirizzo/create")
     public ResponseEntity<CustomResponse> createIndirizzo(@RequestBody @Validated IndirizzoReq indirizzoReq, BindingResult result) {
         if (result.hasErrors()) {
             String resultErr = result.getAllErrors().stream().map(objectError -> objectError.getDefaultMessage()).toList().toString();

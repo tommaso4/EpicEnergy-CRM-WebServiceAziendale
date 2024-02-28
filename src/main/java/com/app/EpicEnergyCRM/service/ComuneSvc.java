@@ -6,6 +6,8 @@ import com.app.EpicEnergyCRM.repository.ComuneRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ComuneSvc {
     @Autowired
@@ -18,7 +20,12 @@ public class ComuneSvc {
         comuneRepo.save(comune);
     }
 
-   }
+    public Comune findById (int id){
+        return comuneRepo.findById(id).orElseThrow(() -> new NotFoundException("Comune do not found"));
+    }
 
+    public List<Comune> findByDenominazione(String den){
+        return comuneRepo.findBydenominazione(den);
+    }
 
-
+}
