@@ -70,6 +70,7 @@ public class FatturaSvc {
         return fattureRepo.findByData(data);
     }
 
+
 //    public List<Fattura> getFattureByAnno(int anno) {
 //        return fattureRepo.findByDataYear(anno);
 //    }

@@ -29,7 +29,6 @@ public class Indirizzo {
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
-
-
-
 }
+
+
