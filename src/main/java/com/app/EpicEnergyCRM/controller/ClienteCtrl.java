@@ -37,11 +37,11 @@ public class ClienteCtrl {
     }
 
 
-//    @GetMapping("/cliente")
-//    public ResponseEntity<CustomResponse> getAllByRagioneSoc(Pageable pageable) {
-//        Page<Cliente> clienti = clienteSvc.getAllByRagioneSociale(pageable);
-//        return CustomResponse.success(HttpStatus.OK.toString(), clienti, HttpStatus.OK);
-//    }
+    @GetMapping("/cliente/ragioneSoc")
+    public ResponseEntity<CustomResponse> getAllByRagioneSoc(Pageable pageable) {
+        Page<Cliente> clienti = clienteSvc.getAllByRagioneSociale(pageable);
+        return CustomResponse.success(HttpStatus.OK.toString(), clienti, HttpStatus.OK);
+    }
 
     @GetMapping("/cliente/{id}")
     public ResponseEntity<CustomResponse> findById(@PathVariable int id) {
@@ -65,16 +65,6 @@ public class ClienteCtrl {
         return CustomResponse.emptyResponse("Cliente with id: " + id + "deleted", HttpStatus.OK);
     }
 
-    @PatchMapping("cliente/addFattura/{idFattura}/{idCliente}")
-    public ResponseEntity<CustomResponse> addFattura (@PathVariable int idFattura,@PathVariable int idCliente ){
-        Fattura fattura = clienteSvc.addFatturaInClient(idFattura,idCliente);
-        return CustomResponse.success(HttpStatus.OK.toString(),fattura,HttpStatus.OK);
-    }
-    @PatchMapping("cliente/addIndirizzo/{idIndirizzo}/{idCliente}")
-    public ResponseEntity<CustomResponse> addIndirizzo (@PathVariable int idIndirizzo,@PathVariable int idCliente ){
-        Indirizzo indirizzo = clienteSvc.addIndirizzoInClient(idIndirizzo, idCliente);
-        return CustomResponse.success(HttpStatus.OK.toString(),indirizzo,HttpStatus.OK);
-    }
     @GetMapping("/cliente/sortedByNome")
     public Page<Cliente> getClientiSortedByNome(Pageable pageable) {
         return clienteSvc.getClientiSortedByNome(pageable);

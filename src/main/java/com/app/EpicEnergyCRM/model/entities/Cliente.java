@@ -39,11 +39,9 @@ public class Cliente {
 
 //    private Indirizzo sedeLegale;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "cliente",fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Fattura> fatture;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Indirizzo> indirizziAzienda;
 }
