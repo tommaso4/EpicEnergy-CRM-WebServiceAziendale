@@ -1,5 +1,6 @@
 package com.app.EpicEnergyCRM.model.request;
 
+import com.app.EpicEnergyCRM.enums.TipoIndirizzo;
 import com.app.EpicEnergyCRM.model.entities.Cliente;
 import com.app.EpicEnergyCRM.model.entities.Comune;
 import jakarta.persistence.JoinColumn;
@@ -19,8 +20,10 @@ public class IndirizzoReq {
     private String localita;
     @NotNull(message = "cap required")
     private Integer cap;
-    @NotBlank(message = "comune required")
-    private Comune comune;
+    @NotNull(message = "idComune required")
+    private Integer idComune;
     @NotNull(message = "cliente required")
     private Integer clienteId;
+    @NotNull(message = "tipoIndirizzo required")
+    private TipoIndirizzo tipoIndirizzo;
 }

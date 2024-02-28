@@ -1,6 +1,7 @@
 package com.app.EpicEnergyCRM.model.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,6 +22,7 @@ public class Provincia {
 
     private String regione;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "provincia", fetch = FetchType.EAGER)
     private List<Comune> comuni;
 
