@@ -27,7 +27,7 @@ public class FatturaCtrl {
     @Autowired
     private FatturaSvc fatturaSvc;
 
-    @PostMapping("/fattura")
+    @PostMapping("/fattura/create")
     public ResponseEntity<CustomResponse> createFattura(@RequestBody @Validated FatturaReq fatturaReq, BindingResult result) {
         if (result.hasErrors()) {
             String resultErr = result.getAllErrors().stream().map(objectError -> objectError.getDefaultMessage()).toList().toString();
@@ -64,14 +64,6 @@ public class FatturaCtrl {
         return CustomResponse.emptyResponse("Fattura with id: " + id + " deleted", HttpStatus.OK);
     }
 
-
-//    @GetMapping("/fattura/byCliente")
-//    public ResponseEntity<CustomResponse> getFattureByCliente(@RequestParam Long clienteId) {
-//        Cliente cliente = // ottieni il cliente dal repository o da un altro modo
-//                List<Fattura> fatture = fatturaSvc.getFattureByCliente(cliente);
-//        return CustomResponse.success(HttpStatus.OK.toString(), fatture, HttpStatus.OK);
-//    }
-
     @GetMapping("/fattura/byTipoFattura")
     public ResponseEntity<CustomResponse> getFattureByTipoFattura(@RequestParam TipoFattura tipoFattura) {
         List<Fattura> fatture = fatturaSvc.getFattureByTipoFattura(tipoFattura);
@@ -84,11 +76,11 @@ public class FatturaCtrl {
         return CustomResponse.success(HttpStatus.OK.toString(), fatture, HttpStatus.OK);
     }
 
-//    @GetMapping("/fattura/byAnno")
-//    public ResponseEntity<CustomResponse> getFattureByAnno(@RequestParam int anno) {
-//        List<Fattura> fatture = fatturaSvc.getFattureByAnno(anno);
-//        return CustomResponse.success(HttpStatus.OK.toString(), fatture, HttpStatus.OK);
-//    }
+    @GetMapping("/fattura/byYear")
+    public ResponseEntity<CustomResponse> findByYear(@RequestParam int anno) {
+        List<Fattura> fatture = fatturaSvc.findByYear(anno);
+        return CustomResponse.success(HttpStatus.OK.toString(), fatture, HttpStatus.OK);
+    }
 
     @GetMapping("/fattura/byImportoRange")
     public ResponseEntity<CustomResponse> getFattureByImportoRange(

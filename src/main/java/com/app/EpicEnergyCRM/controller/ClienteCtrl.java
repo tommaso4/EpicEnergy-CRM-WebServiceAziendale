@@ -2,31 +2,27 @@ package com.app.EpicEnergyCRM.controller;
 
 import com.app.EpicEnergyCRM.exception.CustomResponse;
 import com.app.EpicEnergyCRM.model.entities.Cliente;
-import com.app.EpicEnergyCRM.model.entities.Utente;
 import com.app.EpicEnergyCRM.model.request.ClienteReq;
 import com.app.EpicEnergyCRM.service.ClienteSvc;
-import com.cloudinary.Cloudinary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.util.HashMap;
+import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 public class ClienteCtrl {
     @Autowired
     private ClienteSvc clienteSvc;
-    @Autowired
-    private Cloudinary cloudinary;
 
-    @PostMapping("/cliente")
+    @PostMapping("/cliente/create")
     public ResponseEntity<CustomResponse> createClient(@RequestBody @Validated ClienteReq clienteReq, BindingResult result) {
         if (result.hasErrors()) {
             String resultErr = result.getAllErrors().stream().map(objectError -> objectError.getDefaultMessage()).toList().toString();
@@ -43,11 +39,11 @@ public class ClienteCtrl {
     }
 
 
-//    @GetMapping("/cliente")
-//    public ResponseEntity<CustomResponse> getAllByRagioneSoc(Pageable pageable) {
-//        Page<Cliente> clienti = clienteSvc.getAllByRagioneSociale(pageable);
-//        return CustomResponse.success(HttpStatus.OK.toString(), clienti, HttpStatus.OK);
-//    }
+    @GetMapping("/cliente/ragioneSoc")
+    public ResponseEntity<CustomResponse> getAllByRagioneSoc(Pageable pageable) {
+        Page<Cliente> clienti = clienteSvc.getAllByRagioneSociale(pageable);
+        return CustomResponse.success(HttpStatus.OK.toString(), clienti, HttpStatus.OK);
+    }
 
     @GetMapping("/cliente/{id}")
     public ResponseEntity<CustomResponse> findById(@PathVariable int id) {
@@ -71,16 +67,6 @@ public class ClienteCtrl {
         return CustomResponse.emptyResponse("Cliente with id: " + id + "deleted", HttpStatus.OK);
     }
 
-    @PatchMapping("/cliente/{id}/upload")
-    public ResponseEntity<CustomResponse> uploadAvatar(@PathVariable int id,@RequestParam("upload") MultipartFile file){
-        try {
-            Cliente c = clienteSvc.uploadLogoAziendale(id, (String)cloudinary.uploader().upload(file.getBytes(), new HashMap()).get("url"));
-            return CustomResponse.success(HttpStatus.OK.toString(), c, HttpStatus.OK);
-        }
-        catch (IOException e){
-            return CustomResponse.error(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
     @GetMapping("/cliente/sortedByNome")
     public Page<Cliente> getClientiSortedByNome(Pageable pageable) {
         return clienteSvc.getClientiSortedByNome(pageable);
@@ -101,8 +87,30 @@ public class ClienteCtrl {
         return clienteSvc.getClientiSortedByDataUltimoContatto(pageable);
     }
 
-//    @GetMapping("/cliente/sortedByProvinciaSedeLegale")
-//    public Page<Cliente> getClientiSortedByProvinciaSedeLegale(Pageable pageable) {
-//        return clienteSvc.getClientiSortedByProvinciaSedeLegale(pageable);
-//    }
+    @GetMapping("/cliente/sortedByProvinciaSedeLegale")
+    public Page<Cliente> findAllByOrderByProvinciaSedeLegale(Pageable pageable) {
+        return clienteSvc.findAllByOrderByProvinciaSedeLegale(pageable);
+    }
+
+    @GetMapping("/cliente/filterByFatturatoAnnuale")
+    public ResponseEntity<CustomResponse> findByFatturatoAnnualeGreaterThanEqual(@RequestParam double fatturatoMinimo){
+        List<Cliente> clienti = clienteSvc.findByFatturatoAnnualeGreaterThanEqual(fatturatoMinimo);
+        return CustomResponse.success(HttpStatus.OK.toString(), clienti, HttpStatus.OK);
+    }
+    @GetMapping("/cliente/filterByDataInserimento")
+    public ResponseEntity<CustomResponse> findByDataInserimentoBetween(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate){
+        List<Cliente> clienti = clienteSvc.findByDataInserimentoBetween(startDate, endDate);
+        return CustomResponse.success(HttpStatus.OK.toString(), clienti, HttpStatus.OK);
+    }
+    @GetMapping("/cliente/findByDataUltimoContattoBetween")
+    public ResponseEntity<CustomResponse> findByDataUltimoContattoBetween(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate){
+        List<Cliente> clienti = clienteSvc.findByDataUltimoContattoBetween(startDate, endDate);
+        return CustomResponse.success(HttpStatus.OK.toString(), clienti, HttpStatus.OK);
+    }
+
+    @GetMapping("/cliente/findByNomeContaining")
+    public ResponseEntity<CustomResponse> findByNomeContainingIgnoreCase(@RequestParam String parteDelNome){
+        List<Cliente> clienti = clienteSvc.findByNomeContainingIgnoreCase(parteDelNome);
+        return CustomResponse.success(HttpStatus.OK.toString(), clienti, HttpStatus.OK);
+    }
 }

@@ -48,7 +48,6 @@ public class FatturaSvc {
         fattura.setImporto(fatturaReq.getImporto());
         fattura.setTipoFattura(fatturaReq.getTipoFattura());
         fattura.setCliente(cliente);
-
         return fattureRepo.save(fattura);
     }
 
@@ -70,9 +69,10 @@ public class FatturaSvc {
         return fattureRepo.findByData(data);
     }
 
-//    public List<Fattura> getFattureByAnno(int anno) {
-//        return fattureRepo.findByDataYear(anno);
-//    }
+
+    public List<Fattura> findByYear(int anno) {
+        return fattureRepo.findByYear(anno);
+    }
 
     public List<Fattura> getFattureByImportoRange(double minImporto, double maxImporto) {
         return fattureRepo.findByImportoBetween(minImporto, maxImporto);

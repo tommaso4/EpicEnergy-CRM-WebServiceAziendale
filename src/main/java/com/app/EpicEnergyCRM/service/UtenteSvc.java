@@ -85,9 +85,7 @@ public class UtenteSvc {
 //        SimpleMailMessage message = new SimpleMailMessage();
 //        message.setTo(email);
 //        message.setSubject("Registrazione al servizio EpicEnergy");
-
-//        message.setText("Benvenuto sulla nostra applicazione, registrazione avvenuta con successo.");
-
+//        message.setText("Benvenuto sulla nostra applicazione, registrazioen avvenuta con successo.");
 //        javaMailSender.send(message);
 //    }
 
