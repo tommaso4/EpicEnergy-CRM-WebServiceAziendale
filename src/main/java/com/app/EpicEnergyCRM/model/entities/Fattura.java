@@ -1,6 +1,8 @@
 package com.app.EpicEnergyCRM.model.entities;
 
 import com.app.EpicEnergyCRM.enums.TipoFattura;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,5 +23,7 @@ public class Fattura {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
+//    @JsonProperty("cliente_id")
+    @JsonIgnore
     private Cliente cliente;
 }

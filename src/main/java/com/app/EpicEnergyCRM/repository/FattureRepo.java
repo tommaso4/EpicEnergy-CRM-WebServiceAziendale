@@ -4,7 +4,9 @@ import com.app.EpicEnergyCRM.enums.TipoFattura;
 import com.app.EpicEnergyCRM.model.entities.Cliente;
 import com.app.EpicEnergyCRM.model.entities.Fattura;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 
 
 import java.time.LocalDate;
@@ -18,7 +20,8 @@ public interface FattureRepo extends JpaRepository<Fattura,Integer>, PagingAndSo
 
     List<Fattura> findByData(LocalDate data);
 
-//    List<Fattura> findByDataYear(int year);
+@Query(value = "SELECT * FROM Fattura f WHERE EXTRACT(YEAR FROM f.data) = :annoData", nativeQuery = true)
+List<Fattura> findByYear(@Param("annoData") int anno);
 
     List<Fattura> findByImportoBetween(double minImporto, double maxImporto);
 }

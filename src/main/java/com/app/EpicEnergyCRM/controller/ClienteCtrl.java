@@ -9,11 +9,15 @@ import com.app.EpicEnergyCRM.service.ClienteSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 public class ClienteCtrl {
@@ -89,4 +93,26 @@ public class ClienteCtrl {
 //    public Page<Cliente> getClientiSortedByProvinciaSedeLegale(Pageable pageable) {
 //        return clienteSvc.getClientiSortedByProvinciaSedeLegale(pageable);
 //    }
+
+    @GetMapping("/cliente/filterByFatturatoAnnuale")
+    public ResponseEntity<CustomResponse> findByFatturatoAnnualeGreaterThanEqual(@RequestParam double fatturatoMinimo){
+        List<Cliente> clienti = clienteSvc.findByFatturatoAnnualeGreaterThanEqual(fatturatoMinimo);
+        return CustomResponse.success(HttpStatus.OK.toString(), clienti, HttpStatus.OK);
+    }
+    @GetMapping("/cliente/filterByDataInserimento")
+    public ResponseEntity<CustomResponse> findByDataInserimentoBetween(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate){
+        List<Cliente> clienti = clienteSvc.findByDataInserimentoBetween(startDate, endDate);
+        return CustomResponse.success(HttpStatus.OK.toString(), clienti, HttpStatus.OK);
+    }
+    @GetMapping("/cliente/findByDataUltimoContattoBetween")
+    public ResponseEntity<CustomResponse> findByDataUltimoContattoBetween(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate){
+        List<Cliente> clienti = clienteSvc.findByDataUltimoContattoBetween(startDate, endDate);
+        return CustomResponse.success(HttpStatus.OK.toString(), clienti, HttpStatus.OK);
+    }
+
+    @GetMapping("/cliente/findByNomeContaining")
+    public ResponseEntity<CustomResponse> findByNomeContainingIgnoreCase(@RequestParam String parteDelNome){
+        List<Cliente> clienti = clienteSvc.findByNomeContainingIgnoreCase(parteDelNome);
+        return CustomResponse.success(HttpStatus.OK.toString(), clienti, HttpStatus.OK);
+    }
 }

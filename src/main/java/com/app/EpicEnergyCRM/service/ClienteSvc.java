@@ -11,6 +11,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @Service
 public class ClienteSvc {
     @Autowired
@@ -93,4 +96,20 @@ public class ClienteSvc {
 //    public Page<Cliente> getClientiSortedByProvinciaSedeLegale(Pageable pageable) {
 //        return clienteRepo.findAllByOrderByIndirizziProvinciaSedeLegale(pageable);
 //    }
+
+    public List<Cliente> findByFatturatoAnnualeGreaterThanEqual(double fatturatoMinimo){
+        return clienteRepo.findByFatturatoAnnualeGreaterThanEqual(fatturatoMinimo);
+    }
+
+    public List<Cliente> findByDataInserimentoBetween(LocalDate startDate, LocalDate endDate){
+        return clienteRepo.findByDataInserimentoBetween(startDate, endDate);
+    }
+
+    public List<Cliente> findByDataUltimoContattoBetween(LocalDate startDate, LocalDate endDate){
+        return clienteRepo.findByDataUltimoContattoBetween(startDate, endDate);
+    }
+
+    public List<Cliente> findByNomeContainingIgnoreCase(String parteDelNome){
+        return clienteRepo.findByRagioneSocialeContainingIgnoreCase(parteDelNome);
+    }
 }
