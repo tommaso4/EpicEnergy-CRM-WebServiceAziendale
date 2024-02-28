@@ -20,8 +20,8 @@ public interface FattureRepo extends JpaRepository<Fattura,Integer>, PagingAndSo
 
     List<Fattura> findByData(LocalDate data);
 
-@Query(value = "SELECT * FROM Fattura f WHERE EXTRACT(YEAR FROM f.data) = :annoData", nativeQuery = true)
-List<Fattura> findByYear(@Param("annoData") int anno);
+    @Query(value = "SELECT * FROM Fattura f WHERE EXTRACT(YEAR FROM f.data) = :annoData", nativeQuery = true)
+    List<Fattura> findByYear(@Param("annoData") int anno);
 
     List<Fattura> findByImportoBetween(double minImporto, double maxImporto);
 }
