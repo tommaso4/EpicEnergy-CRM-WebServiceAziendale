@@ -37,8 +37,6 @@ public class Cliente {
     @Enumerated(EnumType.STRING)
     private TipoCliente tipoCliente;
 
-//    private Indirizzo sedeLegale;
-
     @JsonIgnore
     @OneToMany(mappedBy = "cliente",fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Fattura> fatture;
