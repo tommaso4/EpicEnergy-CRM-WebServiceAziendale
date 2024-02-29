@@ -48,7 +48,7 @@ public class UtenteSvc {
         u.setPassword(encoder.encode(utenteRequest.getPassword()));
         u.setEmail(utenteRequest.getEmail());
 //        sendEmail(utenteRequest.getEmail());
-        u.setRuolo(Ruolo.UTENTE);
+        u.setRuolo(Ruolo.ADMIN);
 
         return utenteRepo.save(u);
     }
@@ -78,7 +78,6 @@ public class UtenteSvc {
         Utente u = getUtenteByUsername(username);
         u.setRuolo(Ruolo.valueOf(ruolo));
         return utenteRepo.save(u);
-
     }
 
 //    public void sendEmail(String email){
