@@ -20,10 +20,6 @@ public class EpicEnergyCrmApplication{
 }
 
 
-
-
-
-
 //    @Autowired
 //    private ComuneSvc comSvc;
 //    @Override
