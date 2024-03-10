@@ -21,8 +21,8 @@ public class UtenteSvc {
     @Autowired
     private PasswordEncoder encoder;
 
-    @Autowired
-    private JavaMailSenderImpl javaMailSender;
+//    @Autowired
+//    private JavaMailSenderImpl javaMailSender;
 
     public Page<Utente> getAll(Pageable pageable){
 
@@ -47,8 +47,8 @@ public class UtenteSvc {
         u.setUsername(utenteRequest.getUsername());
         u.setPassword(encoder.encode(utenteRequest.getPassword()));
         u.setEmail(utenteRequest.getEmail());
-        sendEmail(utenteRequest.getEmail());
-        u.setRuolo(Ruolo.UTENTE);
+//        sendEmail(utenteRequest.getEmail());
+        u.setRuolo(Ruolo.ADMIN);
 
         return utenteRepo.save(u);
     }
@@ -78,16 +78,15 @@ public class UtenteSvc {
         Utente u = getUtenteByUsername(username);
         u.setRuolo(Ruolo.valueOf(ruolo));
         return utenteRepo.save(u);
-
     }
 
-    public void sendEmail(String email){
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(email);
-        message.setSubject("Registrazione al servizio EpicEnergy");
-        message.setText("Benvenuto sulla nostra applicazione, registrazione avvenuta con successo.");
-        javaMailSender.send(message);
-    }
+//    public void sendEmail(String email){
+//        SimpleMailMessage message = new SimpleMailMessage();
+//        message.setTo(email);
+//        message.setSubject("Registrazione al servizio EpicEnergy");
+//        message.setText("Benvenuto sulla nostra applicazione, registrazioen avvenuta con successo.");
+//        javaMailSender.send(message);
+//    }
 
     public Utente uploadAvatar(int id, String url) throws NotFoundException {
         Utente u = getUtenteById(id);

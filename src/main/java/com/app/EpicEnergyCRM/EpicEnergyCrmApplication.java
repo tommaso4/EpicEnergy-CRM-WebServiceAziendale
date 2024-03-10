@@ -15,13 +15,9 @@ import java.util.Scanner;
 public class EpicEnergyCrmApplication{
     public static void main(String[] args) throws IOException {
         SpringApplication.run(EpicEnergyCrmApplication.class, args);   }
-    
+
 
 }
-
-
-
-
 
 
 //    @Autowired

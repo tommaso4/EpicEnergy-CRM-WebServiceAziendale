@@ -18,5 +18,4 @@ public class UtenteReq {
     private String password;
     @Email(message = "Inserisci una mail valida")
     private String email;
-
 }
