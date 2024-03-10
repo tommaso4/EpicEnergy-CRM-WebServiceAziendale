@@ -16,12 +16,10 @@ public class Fattura {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "fattura_seq")
     @SequenceGenerator(name = "fattura_seq", sequenceName = "fattura_sequence", allocationSize = 1)
     private int id;
-
     private LocalDate data;
     private double importo;
     private TipoFattura tipoFattura;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;

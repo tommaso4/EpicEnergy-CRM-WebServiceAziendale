@@ -41,6 +41,7 @@ public class CustomResponse {
         CustomResponse personaResponse = new CustomResponse(message);
         return new ResponseEntity<>(personaResponse, httpStatus);
     }
+
     public static ResponseEntity<CustomResponse> error(HttpStatus httpStatus) {
         CustomResponse personaResponse = new CustomResponse(httpStatus.toString());
         return new ResponseEntity<>(personaResponse, httpStatus);
